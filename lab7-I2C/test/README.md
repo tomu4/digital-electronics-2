@@ -19,7 +19,7 @@
 {signal: [
   {name: 'data', wave: '14.5......785.......84.5......785.......641', data: "start 0x68 write ACK 0x06 ACK restart 0x68 read ACK 0x22 NACK end", phase: 0.4},
   {name: 'SCL', wave: '1.n........n.........hn..................h.', phase: -0.5},
-  {name: 'SDA', wave: 'h.phhlhllllllllllhhllhlhhlhlllhlllhlllhlhnh.',data: "A7 A6 A5 A4 A3 A2 A1 A0 R/W ACK=0 ",phase: 0.25},
+  {name: 'SDA', wave: 'h.phhlhllllllllllhhllhlhhlhlllhlllhlllhlhnh.',phase: 0.25},
 ]}
 ```
    ![I2C waveform](img/I2C_year.jpg)
