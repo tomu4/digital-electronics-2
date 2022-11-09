@@ -17,9 +17,9 @@
 2. Draw a timing diagram of I2C signals when calling function `rtc_read_years()`. Let this function reads one byte-value from RTC DS3231 address `06h` (see RTC datasheet) in the range `00` to `99`. Specify when the SDA line is controlled by the Master device and when by the Slave device. Draw the whole request/receive process, from Start to Stop condition. The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 ```wavedrom
 {signal: [
-  {name: 'data', wave: '1.4.5.............7.8.5...............8.14.5.............7.8.5...............6.4.1', data: "start 0x68 write ACK 0x06 ACK rep.start 0x68 read ACK 0x22 NACK end", phase: 0.5},
-  {name: 'SCL', wave: '1..01010101010101010101010101010101010101101010101010101010101010101010101010101..'},
-  {name: 'SDA', wave: '1..01.1.0.1.0.0.0.0.0.0.0.0.0.0.1.1.0.0.1.01.1.0.1.0.0.0.1.0.0.0.1.0.0.0.1.0.1.01.',phase: 0.5},
+  {name: 'data', wave: '14.5......785.......84.5......785.......641', data: "start 0x68 write ACK 0x06 ACK restart 0x68 read ACK 0x22 NACK end", phase: 0.4},
+  {name: 'SCL', wave: '1.n........n.........hn..................h.', phase: -0.5},
+  {name: 'SDA', wave: 'h.phhlhllllllllllhhllhlhhlhlllhlllhlllhlhnh.',data: "A7 A6 A5 A4 A3 A2 A1 A0 R/W ACK=0 ",phase: 0.25},
 ]}
 ```
    ![I2C waveform](img/I2C_year.jpg)
