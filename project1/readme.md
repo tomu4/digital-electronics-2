@@ -12,6 +12,7 @@ Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
 
+![timer2 flowchart](img/timer2.jpeg)
 Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
 
 ## Video
