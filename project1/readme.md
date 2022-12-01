@@ -16,7 +16,7 @@ Put flowchats of your algorithm(s). Write descriptive text of your libraries and
 
 ## Video
 
-[video](https://youtu.be/JNuxtKqhXKQ)
+[![video](https://img.youtube.com/vi/JNuxtKqhXKQ/0.jpg)](https://youtu.be/JNuxtKqhXKQ)
 
 ## References
 
