@@ -25,7 +25,13 @@ There is only one source file where all the programming magic happens, and it's 
 
 I'll start this documentation by explaining what each function does, then I'll tell something about how the app usually runs.
 
-### function descriptions 
+### function descriptions (sorted by order of appearence in the program)
+|function|description|
+| :-: | :-: |
+|[int]random_int([int]lower, [int]higher)|sets random number as seed of random number generator (unnecessary, I just thought it could increase randomness), then generates another random number, modifies the range to fit function parameters and returns output|
+|show_char()|gets random number in range <0,3>from previous function, saves the number to current_char variable, displays arrow (0=up, 1=right 2=down, 3=left) on LCD and updates score on LCD|
+|start_game()|resets current game score, sets game_status to 1 (to let other functions know the game is running), calls show_char function to update arrow direction, then starts timer to move the joystick and prefills timer register according to difficulty chosen.|
+|end_game()|This function is called, when move timer runs out or when joystick is moved in the wrong direction. It stops the timer, sets game_status to 0 to let other functions know user can interract with menu and displays "game over" message. It then checks if user exceeded the highest score and shows highest score on screen.|
 
 Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
 
