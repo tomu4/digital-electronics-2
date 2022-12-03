@@ -106,9 +106,6 @@ void move_check(uint8_t key)
   if(key==current_char)
   {
     score=score+1;
-    //itoa(score,string3,10);
-    //uart_puts(string3);
-    //uart_puts("\r\n");
     show_char();
     TIM1_overflow_4s();
     TCNT1=0+(65536/5*(diff-1));
