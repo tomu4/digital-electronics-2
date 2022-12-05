@@ -8,7 +8,27 @@ Application of analog joy-stick (2 ADC channels, 1 push button), rotary encoder,
 
 ## Hardware description
 
-Insert descriptive text and schematic(s) of your implementation.
+For LCD, I used standard pinout we used in the lab, purely for the ease of use, because that's what Peter Fleury's library is preset to work with. That is:
+
+LCD pins D4 - D7 connected to pins PD4 - PD7 on Arduino,<br>
+LCD pin RS connected to pin PB0 on Arduino,<br>
+LCD pin EN connected to pin PB1 on Arduino.
+
+For joystick, any of six analog inputs were suitable. I chose pins A0 and A1, because we worked with A0 in labs and therefore code modifications didnt't have to be so invasive. Full joystick connection is as follows:
+
+joystick pin VRX is connected to pin PC0 on Arduino,<br>
+joystick pin VRY is connected to pin PC1 on Arduino.
+
+Lastly, the encoder. I didn't have any previous working code for this, therefore pin connections are chosen to be easy to work with encoder. Since I need to read two pulses on two pins quite close together, I chose to not use standard digital reading in timer loop. Instead, I used external interrupts to set variable when signal edge appears. For this reason, I chose to use two pins that support external interrupt. Swith pin doesn't require this, therefore it's choice is random without background thinking:
+
+encoder pin DT is connected to pin PD2 on Arduino,<br>
+encoder pin CLK is connected to pin PD3 on Arduino,<br>
+encoder pin SW is connected to pin PB4 on Arduino.
+
+### Full shematic
+
+
+![schematic](img/schematic16_9_on.png)
 
 ## Software description
 Timer 2 (continuous, takes care of inputs):
@@ -21,7 +41,7 @@ Functions - part 1:
 Functions - part 2:
 ![functions part 2](img/functions%20-%20Page%202.jpeg)
 
-There is only one source file where all the programming magic happens, and it's the [main.c](src/main.c) file. However, game program contains several functions simplifying both program orientation and programming experience. 
+There is only one source file where all the programming magic happens, and it's the [main.c](src/main.c) file. However, game program is split into several functions simplifying both orientation in program and programming experience. 
 
 I'll start this documentation by explaining what each function does, then I'll tell something about how the app usually runs.
 
@@ -43,6 +63,17 @@ I'll start this documentation by explaining what each function does, then I'll t
 |[gpio](lib/gpio/gpio.h)|to get encoder button pin readings|
 |[lcd](lib/lcd/lcd.h)|to show game on connected LCD|
 |[uart](lib/uart/uart.h)|for debugging purposes, not used in final code|
+
+### Sample run of program
+When the Arduino is powered on, it shows initial info screen and waits for user confirmation. Game status is set to 0. When user clicks encoder button, game status is set to 2 and difficulty choice menu is shown. Using encoder, user can choose difficulty from 1 to 5. Confirming with another button press, game status is set to 1 and game starts. Then, user is presented with arrow in the left corner and he has preset time limit to move joystick in the displayed direction. Time limit is dependant on difficulty chosen and is displayed on screen in form of progressively appearing bars. If user fails to move the joystick in time or moves it in the wrong way, game is over. Otherwise, new arrow is shown and new countdown begins. After every successful move, current game score is shown on screen, and when the game is over, high score is updated and shown as well.
+
+## Conclusion
+
+I think the project turned out just as I expected. There are only few things I would change if I had more time:
+
+1. encoder reliability: For some reason I don't understand, encoder reads correct way of rotation, but only once for two clics. I don't know, whether it's bug or feature, however, incrementing and decrementing works, so this doesn't really bother me.
+2. bar that shows time: seeing it in action, I think it would be clearer, if bars were disappearing, instead of appearing. No added functionality, just more visually appealing.
+3. bar length: last thing that came to my mind is also related to time bars. I would love to have bars for all difficulties starting at the same value, and change rate of appearing/disappearing, instead of keeping the rate constant and beginning with i.e. 7 bars prefilled. Again, current way works, I just don't like it that much.
 
 ## Video
 
