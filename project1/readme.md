@@ -36,7 +36,13 @@ I'll start this documentation by explaining what each function does, then I'll t
 |button_press()|called, when encoder button is pushed. If game is running (status 1), nothong happens. If game just started or finished (status 0), this function shows difficulty choose menu (and sets status 2). If difficulty menu is already shown, button_press starts the game (calls start_game function)|
 |CW() and counter_CW()|resets encoder memory (in place to prevent unknown states and false readings), if status=2 (difficulty setting menu), increases and dicreases difficulty from 1 to 5 and shows value on screen.|
 
-Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
+### libraries used in project
+|library|purpose|
+| :-: | :-: |
+|[timer](include/timer.h)|to periodically check inputs and time moves|
+|[gpio](lib/gpio/gpio.h)|to get encoder button pin readings|
+|[lcd](lib/lcd/lcd.h)|to show game on connected LCD|
+|[uart](lib/uart/uart.h)|for debugging purposes, not used in final code|
 
 ## Video
 
