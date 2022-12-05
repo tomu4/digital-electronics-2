@@ -1,11 +1,11 @@
 /***********************************************************************
  * 
- * Use Analog-to-digital conversion to read push buttons on LCD keypad
- * shield and display it on LCD screen.
+ * Application of analog joy-stick (2 ADC channels, 1 push button), 
+ * rotary encoder, and Digilent PmodCLP LCD module.
  * 
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
- * Copyright (c) 2018 Tomas Fryza
+ * Copyright (c) 2022 Tomas Uchytil
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -19,30 +19,24 @@
 #include "timer.h"          // Timer library for AVR-GCC
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
-#include <uart.h>
+#include <uart.h>           // UART serial communication library. For debugging purposes.
 
-/* Function definitions ----------------------------------------------*/
-/**********************************************************************
- * Function: Main function where the program execution begins
- * Purpose:  Use Timer/Counter1 and start ADC conversion every 100 ms.
- *           When AD conversion ends, send converted value to LCD screen.
- * Returns:  none
- **********************************************************************/
-static uint8_t cycle=0;
-static uint8_t diff=3;
-static uint16_t memory_x=0;
-static uint16_t memory_y=0;
-static uint8_t int_zero=0;
-static uint8_t int_one=0;
-static uint16_t score=0;
-static uint16_t high_score=0;
-static uint8_t x_key_res = 0;
-static uint8_t y_key_res = 0;
-static uint8_t button_mem = 0;
-char string[1];
-char string3[3];
+/* Variable definitions ----------------------------------------------*/
+static uint8_t cycle=0; //swithing between ADC channels
+static uint8_t diff=3; //difficulty level, range 1 to 5, default 3
+static uint16_t memory_x=0; //stores x value between analog readings
+static uint16_t memory_y=0; //stores y value between analog readings
+static uint8_t int_zero=0; //order in which change on INT0 pin was received compared to INT1
+static uint8_t int_one=0; //order in which change on INT1 pin was received compared to INT0
+static uint16_t score=0; //self desribing - score counter
+static uint16_t high_score=0; //self desribing - high score memory
+static uint8_t x_key_res = 0; //prevent multiple readings of joytick - X axis
+static uint8_t y_key_res = 0; //prevent multiple readings of joytick - Y axis
+static uint8_t button_mem = 0; //prevent multiple readings of joytick - button
+char string[1]; //one character buffer for LCD, used for difficulty selector
+char string3[3]; //three character array buffer for LCD, used for score and high_score
 static uint8_t game_status=0; //0 = game stopped, 1 = game runs, 2 = choose difficulty
-static uint8_t current_char=0;
+static uint8_t current_char=0; //stores direction of arrow on screen
 uint8_t customChar[] = {
   //arrow up
   0b00000,0b00100,0b01110,0b10101,0b00100,0b00100,0b00100,0b00000,
@@ -56,7 +50,9 @@ uint8_t customChar[] = {
   0b00000,0b00001,0b00011,0b10110,0b11100,0b01000,0b00000,0b00000,
   //star (for high score)
   0b00000,0b00100,0b10101,0b01110,0b10101,0b00100,0b00000,0b00000
-};
+}; //custom characters on lcd
+
+/* Function definitions (for purpose of each function, see documentation)------*/
 
 uint8_t random_int(uint8_t lower, uint8_t upper)
 {
@@ -211,8 +207,8 @@ int main(void)
 
     //enable interrupts on pins 2 and 3
     EIMSK |= (1<<INT0)|(1<<INT1);
-    // Configure 16-bit Timer/Counter1 to start ADC conversion
-    // Set prescaler to 33 ms and enable overflow interrupt
+    // Configure 8-bit Timer/Counter2 to start ADC conversion
+    // Set prescaler to 16 ms and enable overflow interrupt
     TIM2_overflow_16ms();
     TIM2_overflow_interrupt_enable();
     TIM1_overflow_interrupt_enable();
