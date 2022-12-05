@@ -79,6 +79,10 @@ I think the project turned out just as I expected. There are only few things I w
 
 [![video](https://img.youtube.com/vi/JNuxtKqhXKQ/0.jpg)](https://youtu.be/JNuxtKqhXKQ)
 
+## simulations
+
+Simulations were done in SimulIDE-0.4.15-SR10, source file for simulation can be found [in simulations folder](simulations/project.simu).
+
 ## References
 
 1. [Atmega 328P datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
