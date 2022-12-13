@@ -73,3 +73,5 @@ Simulations were done in SimulIDE-0.4.15-SR10, source file for simulation can be
 
 1. [Atmega 328P datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
 2. google images for pinout and connection examples
+3. [RC car image for video](https://www.youtube.com/watch?v=ExQotTzmmiQ)
+4. [ballance pad image for video](https://create.arduino.cc/projecthub/davidhamor/ball-and-plate-c48027)
