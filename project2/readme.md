@@ -62,8 +62,7 @@ My solution is very scalable, since it allows adding more servos just by adding 
 
 ## Video
 
-<!--[![video](https://img.youtube.com/vi/JNuxtKqhXKQ/0.jpg)](https://youtu.be/JNuxtKqhXKQ)-->
-<small><b>To be completed</b></small>
+[![video](https://img.youtube.com/vi/hySJy6qVYh4/0.jpg)](https://youtu.be/hySJy6qVYh4)
 
 ## simulations
 
