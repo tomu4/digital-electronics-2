@@ -1,0 +1,215 @@
+digraph "Graph" {
+	graph [nodesep=1 ranksep=2 splines=false]
+	edge [arrowhead=none color="#707070"]
+	subgraph cluster_input {
+		1 [label="Image
+ 64 x 64 pixels
+Grayscale" fillcolor="black:white" fontcolor=white shape=square style=filled]
+	}
+	conv_2 -> 2
+	1 -> conv_2
+	subgraph cluster_1 {
+		color="#5faad0" style=filled
+		conv_2 [label="Convolutional Layer
+Kernel Size: 3x3
+Filters: 32
+Activation: linear" shape=square]
+		2 [label="32
+Feature Maps" shape=square]
+	}
+	2 -> 3
+	subgraph cluster_2 {
+		color=white
+		3 [label="Activation Layer
+Function: relu" fillcolor="#00b894" fontcolor=black shape=octagon style=filled]
+	}
+	3 -> 4
+	subgraph cluster_3 {
+		color=white
+		4 [label="Max Pooling
+Pool Size: 2x2" fillcolor="#8e44ad" fontcolor=white style=filled]
+	}
+	conv_5 -> 5
+	4 -> conv_5
+	subgraph cluster_4 {
+		color="#5faad0" style=filled
+		conv_5 [label="Convolutional Layer
+Kernel Size: 3x3
+Filters: 64
+Activation: linear" shape=square]
+		5 [label="64
+Feature Maps" shape=square]
+	}
+	5 -> 6
+	subgraph cluster_5 {
+		color=white
+		6 [label="Activation Layer
+Function: relu" fillcolor="#00b894" fontcolor=black shape=octagon style=filled]
+	}
+	6 -> 7
+	subgraph cluster_6 {
+		color=white
+		7 [label="Max Pooling
+Pool Size: 2x2" fillcolor="#8e44ad" fontcolor=white style=filled]
+	}
+	conv_8 -> 8
+	7 -> conv_8
+	subgraph cluster_7 {
+		color="#5faad0" style=filled
+		conv_8 [label="Convolutional Layer
+Kernel Size: 3x3
+Filters: 128
+Activation: linear" shape=square]
+		8 [label="128
+Feature Maps" shape=square]
+	}
+	8 -> 9
+	subgraph cluster_8 {
+		color=white
+		9 [label="Activation Layer
+Function: relu" fillcolor="#00b894" fontcolor=black shape=octagon style=filled]
+	}
+	9 -> 10
+	subgraph cluster_9 {
+		color=white
+		10 [label="Max Pooling
+Pool Size: 2x2" fillcolor="#8e44ad" fontcolor=white style=filled]
+	}
+	conv_11 -> 11
+	10 -> conv_11
+	subgraph cluster_10 {
+		color="#5faad0" style=filled
+		conv_11 [label="Convolutional Layer
+Kernel Size: 3x3
+Filters: 256
+Activation: linear" shape=square]
+		11 [label="256
+Feature Maps" shape=square]
+	}
+	11 -> 12
+	subgraph cluster_11 {
+		color=white
+		12 [label="Activation Layer
+Function: relu" fillcolor="#00b894" fontcolor=black shape=octagon style=filled]
+	}
+	12 -> 13
+	subgraph cluster_12 {
+		color=white
+		13 [label="Max Pooling
+Pool Size: 2x2" fillcolor="#8e44ad" fontcolor=white style=filled]
+	}
+	13 -> 14
+	subgraph cluster_13 {
+		color=white
+		14 [label=Flattening fillcolor="#2c3e50" fontcolor=white shape=invtriangle style=filled]
+	}
+	14 -> 15
+	14 -> 16
+	14 -> 17
+	14 -> 18
+	14 -> 19
+	14 -> 20
+	14 -> 21
+	14 -> 22
+	14 -> 23
+	14 -> 24
+	subgraph cluster_14 {
+		color=white
+		rank=same
+		141414 [label="Units: 4096 (+4086 more)
+Activation: relu" color=white fontcolor=black fontsize=18 shape=rectangle]
+		15 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		16 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		17 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		18 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		19 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		20 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		21 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		22 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		23 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		24 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+	}
+	15 -> 25
+	16 -> 25
+	17 -> 25
+	18 -> 25
+	19 -> 25
+	20 -> 25
+	21 -> 25
+	22 -> 25
+	23 -> 25
+	24 -> 25
+	subgraph cluster_15 {
+		color=white
+		25 [label="Dropout Layer" fillcolor="#f39c12" fontcolor=white style=filled]
+	}
+	25 -> 26
+	25 -> 27
+	25 -> 28
+	25 -> 29
+	25 -> 30
+	25 -> 31
+	25 -> 32
+	25 -> 33
+	25 -> 34
+	25 -> 35
+	subgraph cluster_16 {
+		color=white
+		rank=same
+		252525 [label="Units: 4096 (+4086 more)
+Activation: relu" color=white fontcolor=black fontsize=18 shape=rectangle]
+		26 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		27 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		28 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		29 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		30 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		31 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		32 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		33 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		34 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		35 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+	}
+	26 -> 36
+	27 -> 36
+	28 -> 36
+	29 -> 36
+	30 -> 36
+	31 -> 36
+	32 -> 36
+	33 -> 36
+	34 -> 36
+	35 -> 36
+	subgraph cluster_17 {
+		color=white
+		36 [label="Dropout Layer" fillcolor="#f39c12" fontcolor=white style=filled]
+	}
+	36 -> 37
+	36 -> 38
+	36 -> 39
+	36 -> 40
+	36 -> 41
+	36 -> 42
+	36 -> 43
+	36 -> 44
+	36 -> 45
+	36 -> 46
+	subgraph cluster_18 {
+		color=white
+		rank=same
+		363636 [label="Units: 24 (+14 more)
+Activation: linear" color=white fontcolor=black fontsize=18 shape=rectangle]
+		37 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		38 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		39 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		40 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		41 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		42 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		43 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		44 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		45 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+		46 [color="#3498db" fontcolor="#3498db" shape=circle style=filled]
+	}
+	subgraph cluster_output {
+	}
+	arrowShape=none
+}
